@@ -42,7 +42,7 @@
             <div class="card-header">
                 Current Reservations
             </div>
-            <ul class="list-group list-group-flush parrent">
+            <ul class="list-group list-group-flush resparent">
                 <li class="list-group-item">Placeholder text</li>
           
             </ul>
@@ -54,7 +54,7 @@
             <div class="card-header">
                 Wait List
             </div>
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush waitparent">
                 <li class="list-group-item">Placeholder text</li>
                 <li class="list-group-item">Placeholder text</li>
                 
@@ -82,17 +82,15 @@
         function grabData(){
           $.get("/api/tables/", function(data) {
 
-            $('#parent').append(`
+            $('#resparent').append(`
                 <li class="list-group-item">${data.table.name}</li>
+            `); 
+            $('#waitparent').append(`
+                <li class="list-group-item">${data.reserve.name}</li>
             `); 
           });
         }
 
-        // function populate(){
-        //     $('#parent').append(`
-        //         <li class="list-group-item">${data.table.name}</li>
-        //     `);    
-        // }
 
     </script>
 
