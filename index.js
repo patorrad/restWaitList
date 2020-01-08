@@ -9,7 +9,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 3004;
 
 
-const reservations ={
+const reservations = {
     tables: [],
     waitlist: []
 }
@@ -23,7 +23,7 @@ app.get("/tables", (req, res) => {
 });
 
 app.get("/reserve", (req, res) => {
-    // res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
 app.get("/api/tables", (req, res) => {
@@ -50,12 +50,17 @@ app.post("/api/tables", function(req, res) {
     // newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
   
     console.log(newTable);
+   
   
-    if (tables.length <= 5){
+    if (reservations.tables.length <= 5){
         reservations.tables.push(newTable);
+        console.log("hello")
     } else {
         reservations.waitlist.push(newTable);
+        console.log("bye")
     }
+    console.log(reservations.tables.length)
+    console.log(reservations.tables)
 
     res.json(newTable);
   });
