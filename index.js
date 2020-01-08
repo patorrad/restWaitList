@@ -8,11 +8,11 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3004;
 
+// const reservations = {
+    const tables = [];
+    const waitlist = [];
+// }
 
-const reservations = {
-    tables: [],
-    waitlist: []
-}
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
@@ -35,9 +35,9 @@ app.get("/api/waitlist", (req, res) => {
 });
 
 // Displays all tables
-app.get("/api/tables", function(req, res) {
-    return res.json(reservations);
-  });
+// app.get("/api/tables", function(req, res) {
+//     return res.json(reservations);
+//   });
 
 // Create New Tables - takes in JSON input
 app.post("/api/tables", function(req, res) {
@@ -50,17 +50,12 @@ app.post("/api/tables", function(req, res) {
     // newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
   
     console.log(newTable);
-   
-  
-    if (reservations.tables.length <= 5){
-        reservations.tables.push(newTable);
-        console.log("hello")
+
+    if (tables.length <= 5){
+        tables.push(newTable);
     } else {
-        reservations.waitlist.push(newTable);
-        console.log("bye")
+        waitlist.push(newTable);
     }
-    console.log(reservations.tables.length)
-    console.log(reservations.tables)
 
     res.json(newTable);
   });
